@@ -9,13 +9,33 @@ export default function CalorieIntake() {
     const [weight, setWeight] = useState(0);
     const [afactor, setAfactor] = useState("");
 
-    const [malebmr, setMalbmr] = useState(0);
+    const [malebmr, setMalebmr] = useState(0);
     const [femalebmr, setFemalebmr] = useState(0);
+    
+    const [Mantenance, setMantenace] = useState(0);
+
+
+    const light = 1.375;
+    const moderate = 1.55;
+    const heavy = 1.75;
+    const athlete = 1.9;
 
     const calculateBmr = () => {
-        if (gender === "male") {
+        if (gender == "male") {
         const newmailbmr = (10*weight)+(6.25*height)-(5*age)+5;
-        setMalbmr(newmailbmr);
+        setMalebmr(newmailbmr);
+        let mentanence = newmailbmr;
+        if (afactor == "lightactive") {
+            mentanence*=light
+        } else if (afactor == "moderate") {
+            mentanence*=moderate
+        } else if (afactor == "heavy") {
+            mentanence*=heavy
+        } else if (afactor == "athlete") {
+            mentanence*=athlete
+        }
+
+        setMantenace(mentanence);
         } else {
             const newfemalebmr = (10*weight)+(6.25*height)-(5*age)-161;
             setFemalebmr(newfemalebmr);
@@ -39,9 +59,9 @@ export default function CalorieIntake() {
                 />-year-old young 
                 
                 <select value={gender} onChange={(e) => setGender(e.target.value)} className="border-1 p-1 m-2 rounded">
+                    <option value="" disabled>?</option>
                     <option value="male">man</option>
                     <option value="female"> woman</option></select>. 
-
 
                 I stand 
                 <input value={height} type="number" 
@@ -61,17 +81,21 @@ export default function CalorieIntake() {
 
                 and maintain a <select value={afactor} onChange={(e) => setAfactor(e.target.value)} className="border-1 p-1 rounded m-2">
                     <option value="" disabled>?</option>
-                    <option value="lightactive">Lightly active</option>
-                    <option value="modeactive">Moderately active</option>
-                    <option value="active">Active</option>
-                    <option value="active">Very Active</option>
+                    <option value="light">Lightly active</option>
+                    <option value="moderate">Moderately active</option>
+                    <option value="heavy">Active</option>
+                    <option value="athlete">Very Active</option>
                     </select> lifestyle.
             </div>
             <div className="flex">
                 <button onClick={calculateBmr} className="p-2 rounded m-10 bg-green-500 hover:bg-green-600 font-bold cursor-pointer mx-auto items-center ">Calulate</button>
             </div>
             <div>
-                {malebmr}
+                {name} If you just lie in a bed all day, your body still needs {malebmr} calories to survive. total calories: {Math.round(Mantenance)}.
+                
+            </div>
+            <div>
+                {name} If you just lie in a bed all day, your body still needs {femalebmr} calories to survive.
             </div>
         </div>
     )
