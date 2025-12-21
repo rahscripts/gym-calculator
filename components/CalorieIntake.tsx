@@ -8,13 +8,15 @@ export default function CalorieIntake() {
     const [height, setHeight] = useState(0);
     const [weight, setWeight] = useState(0);
     const [afactor, setAfactor] = useState("");
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
 
     const [malebmr, setMalebmr] = useState(0);
     const [femalebmr, setFemalebmr] = useState(0);
 
     const [Mantenance, setMantenace] = useState(0);
     const [press, setPress] = useState(false);
-    
+
 
     const light = 1.375;
     const moderate = 1.55;
@@ -43,42 +45,30 @@ export default function CalorieIntake() {
         }
         setPress(true);
     }
-    const [wlmantenance, setWlmantenance] = useState(0);
-    const [wgmantenance, setWgmantenance] = useState(0);
-    const [bmmantenance, setBmmantenance] = useState(0);
-    const [brmantenance, setBrmantenance] = useState(0);
-    const handlewloss = () => {
-        setWlmantenance(Mantenance - 300);
-    }
-    const handlewgain = () => {
-        setWgmantenance(Mantenance + 400);
-    }
-    const handlebm = () => {
-        setBmmantenance(Mantenance);
-    }
-    const handleBr = () => {
-        setBrmantenance(Mantenance - 200)
-    }
     const goals = [
         {
             label: "Weight Loss",
-            onClick: handlewloss,
-            color: "bg-red-200 hover:bg-red-400",
+            color: " bg-red-200 hover:bg-red-400 px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold",
+            calorie: -300,
+            emoji: "🥦"
         },
         {
             label: "Weight Gain",
-            onClick: handlewgain,
-            color: "bg-green-200 hover:bg-green-400",
+            color: " bg-green-200 hover:bg-green-400 px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold",
+            calorie: 400,
+            emoji: "🍔"
         },
         {
             label: "Build Muscles",
-            onClick: handlebm,
-            color: "bg-orange-200 hover:bg-orange-400",
+            color: " bg-orange-200 hover:bg-orange-400 px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold",
+            calorie: 0,
+            emoji: "🦵🏻"
         },
         {
             label: "Body Recomposition",
-            onClick: handleBr,
-            color: "bg-gray-300 hover:bg-gray-400",
+            color: " bg-gray-300 hover:bg-gray-400 px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold",
+            calorie: -300,
+            emoji: "🏃🏻"
         },
     ];
 
@@ -164,17 +154,36 @@ export default function CalorieIntake() {
                                     Tell about your goal {gender === "male" ? "Mr." : "Mrs."} {name} 💪🏻
                                 </h1>
 
-                                <div className="flex flex-col items-center">
-                                    {goals.map((goal, index) => (
-                                        <p
-                                            key={index}
-                                            onClick={goal.onClick}
-                                            className={`px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold ${goal.color}`}
-                                        >
-                                            {goal.label}
-                                        </p>
-                                    ))}
+                                <div className="flex flex-col items-center w-full">
+                                    {goals.map((goal, index) => {
+                                        const isOpen = activeIndex === index;
+
+                                        return (
+                                            <div key={index} className="w-full">
+                                                <button
+                                                    onClick={() => setActiveIndex(isOpen ? null : index)}
+                                                    className={`py-5 cursor-pointer font-semibold w-full flex justify-between items-center ${index !== goals.length - 1 ? "border-b" : ""}
+          `}
+                                                >
+                                                    <p className={goal.color}>{goal.label}</p>
+                                                    <span className="text-sm opacity-60">
+                                                        {isOpen ? "−" : "+"}
+                                                    </span>
+                                                </button>
+
+                                                <div
+                                                    className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-40 opacity-90" : "max-h-0 opacity-0"}
+          `}
+                                                >
+                                                    <div className="mt-3 mb-2">
+                                                        Calories to {goal.label}: <span className="text-2xl font-bold">{Math.round(Mantenance+ goal.calorie)} {goal.emoji}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
+
                             </div>
                         )}
                     </div>
