@@ -1,6 +1,7 @@
 'use client';
 import Image from "next/image";
 import { useState } from "react";
+import CalorieIntake from "@/components/CalorieIntake";
 
 export default function Home() {
   const [start, setStart] = useState(false);
@@ -42,7 +43,9 @@ export default function Home() {
             }
           </div>
         </div>
-        
+        <div>
+          <CalorieIntake />
+        </div>
     </section>
   );
 }
