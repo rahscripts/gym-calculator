@@ -13,7 +13,7 @@ export default function CalorieIntake() {
     const [femalebmr, setFemalebmr] = useState(0);
     
     const [Mantenance, setMantenace] = useState(0);
-
+    const [press, setPress] = useState(false);
 
     const light = 1.375;
     const moderate = 1.55;
@@ -40,6 +40,7 @@ export default function CalorieIntake() {
             const newfemalebmr = (10*weight)+(6.25*height)-(5*age)-161;
             setFemalebmr(newfemalebmr);
         }
+        setPress(true);
     }
     return (
         <div className="max-w-3xl mx-auto my-10 p-10">
@@ -115,6 +116,20 @@ export default function CalorieIntake() {
                         }
                 
                 
+                    </div>
+                    <div>
+                        {press && 
+                        <div>
+                            <div>
+                                <h1 className="text-3xl tracking-tighter font-semibold m-10 mb-3">Tell about your goal {gender == "male" ? "Mr." : "Mrs."} {name}💪🏻.</h1>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <p className="px-2 p-1 bg-red-200 rounded m-1 cursor-pointer hover:bg-red-400 duration-150 animation-all font-semibold">Weight Loss</p>
+                                <p className="px-2 p-1 bg-green-200 rounded m-1 cursor-pointer hover:bg-green-400 duration-150 animation-all font-semibold">Weight Gain</p>
+                                <p className="px-2 p-1 bg-orange-200 rounded m-1 cursor-pointer hover:bg-orange-400 duration-150 animation-all font-semibold">Build Muscles</p>
+                                <p className="px-2 p-1 bg-gray-300 rounded m-1 cursor-pointer hover:bg-gray-400 duration-150 animation-all font-semibold">Body Recompositions</p>
+                            </div>
+                        </div>}
                     </div>
                 </div>
             </div>
