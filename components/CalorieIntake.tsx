@@ -25,7 +25,7 @@ export default function CalorieIntake() {
         const newmailbmr = (10*weight)+(6.25*height)-(5*age)+5;
         setMalebmr(newmailbmr);
         let mentanence = newmailbmr;
-        if (afactor == "lightactive") {
+        if (afactor == "light") {
             mentanence*=light
         } else if (afactor == "moderate") {
             mentanence*=moderate
@@ -42,60 +42,81 @@ export default function CalorieIntake() {
         }
     }
     return (
-        <div className="max-w-3xl mx-auto m-20 p-10">
-            <div>
-                My name is 
-                <input value={name} type="text" 
-                onChange={(e) => setName(e.target.value)}
-                placeholder="name" 
-                className="p-1 text-black border-1 rounded m-2 w-30" 
-                />. 
+        <div className="max-w-3xl mx-auto my-10 p-10">
+            <div className="flex flex-col items-center">
+                <div className="mb-10">
+                    <h1 className="font-extrabold underline decoration-3 decoration-green-600 text-3xl">Daily Calorie Intake Calculator</h1>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                    <div className="font-semibold flex flex-col items-center">
+                        <div>
+                            My name is
+                            <input value={name} type="text"
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="name"
+                            className="p-1 text-black border-1 rounded m-2 w-30"
+                            />. <br />
+                        </div>
                 
-                I am a 
-                <input value={age} type="number" 
-                onChange={(e) => setAge(Number(e.target.value))}
-                placeholder="20" 
-                className="p-1 text-black border-1 rounded m-2 w-15" 
-                />-year-old young 
+                        <div>
+                            I am a
+                            <input value={age} type="number"
+                            onChange={(e) => setAge(Number(e.target.value))}
+                            placeholder="20"
+                            className="p-1 text-black border-1 rounded m-2 w-15"
+                            />-year-old young
+                            <select value={gender} onChange={(e) => setGender(e.target.value)} className="border-1 p-1 m-2 rounded">
+                                <option value="" disabled>?</option>
+                                <option value="male">man</option>
+                                <option value="female"> woman</option></select>. <br />
+                        </div>
+                        <div>
+                            I stand
+                            <input value={height} type="number"
+                             onChange={(e) => setHeight(Number(e.target.value))}
+                            placeholder="175"
+                            className="p-1 text-black border-1 rounded m-2 w-15"
+                            />cm tall,
+                            weigh approximately
+                            <input value={weight} type="number"
+                             onChange={(e) => setWeight(Number(e.target.value))}
+                            placeholder="65"
+                            className="p-1 text-black border-1 rounded m-2 w-15"
+                            /> kg,
+                            <br />
+                        </div>
+                        <div>
+                            and maintain a
+                            <select
+                            value={afactor}
+                            onChange={(e) => setAfactor(e.target.value)}
+                            className="border-1 p-1 rounded m-2">
+                                <option value="" disabled>?</option>
+                                <option value="light">Lightly active</option>
+                                <option value="moderate">Moderately active</option>
+                                <option value="heavy">Active</option>
+                                <option value="athlete">Very Active</option>
+                                </select> lifestyle.
+                        </div>
+                    </div>
+                    <div className="flex">
+                        <button onClick={calculateBmr} className="p-2 rounded m-10 bg-green-500 hover:bg-green-600 font-bold cursor-pointer mx-auto items-center ">Calulate</button>
+                    </div>
+                    <div>
+                        {gender=="male" ?
+                        <div className="flex flex-col items-center justify-center">
+                            <div>BMR (basal metabolic rate): <span className="text-2xl font-bold">{Math.round(malebmr)} calories </span></div>
+                            <div>Calories to maintain weight: <span className="text-2xl font-bold text-green-700">{Math.round(Mantenance)} calories</span></div>
+                        </div> :
+                        <div className="flex flex-col items-center justify-center">
+                         <div>BMR (basal metabolic rate): <span className="text-2xl font-bold">{Math.round(femalebmr)} calories </span></div>
+                            <div>Calories to maintain weight: <span className="text-2xl font-bold text-green-700">{Math.round(Mantenance)} calories</span></div>
+                        </div>
+                        }
                 
-                <select value={gender} onChange={(e) => setGender(e.target.value)} className="border-1 p-1 m-2 rounded">
-                    <option value="" disabled>?</option>
-                    <option value="male">man</option>
-                    <option value="female"> woman</option></select>. 
-
-                I stand 
-                <input value={height} type="number" 
-                 onChange={(e) => setHeight(Number(e.target.value))}
-                placeholder="175" 
-                className="p-1 text-black border-1 rounded m-2 w-15" 
-                />cm tall, 
-
-
-                weigh approximately 
-                <input value={weight} type="number" 
-                 onChange={(e) => setWeight(Number(e.target.value))}
-                placeholder="65" 
-                className="p-1 text-black border-1 rounded m-2 w-15" 
-                /> kg, 
-
-
-                and maintain a <select value={afactor} onChange={(e) => setAfactor(e.target.value)} className="border-1 p-1 rounded m-2">
-                    <option value="" disabled>?</option>
-                    <option value="light">Lightly active</option>
-                    <option value="moderate">Moderately active</option>
-                    <option value="heavy">Active</option>
-                    <option value="athlete">Very Active</option>
-                    </select> lifestyle.
-            </div>
-            <div className="flex">
-                <button onClick={calculateBmr} className="p-2 rounded m-10 bg-green-500 hover:bg-green-600 font-bold cursor-pointer mx-auto items-center ">Calulate</button>
-            </div>
-            <div>
-                {name} If you just lie in a bed all day, your body still needs {malebmr} calories to survive. total calories: {Math.round(Mantenance)}.
                 
-            </div>
-            <div>
-                {name} If you just lie in a bed all day, your body still needs {femalebmr} calories to survive.
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <section>
-        <div className="max-w-3xl mx-auto m-20 p-10">
+        <div className="max-w-3xl mx-auto m-20 mb-10 p-10">
           <div className="flex flex-col items-center justify-center">
           <h1 className="text-3xl font-extrabold ">Gym Calculator <span className="uppercase font-black tracking-tighter text-xs italic underline decoration-wavy text-green-600">by MR</span> </h1><br />
           <button className="bg-green-500 p-2 rounded font-bold hover:bg-green-600 cursor-pointer" onClick={() => setStart(!start)}>Start</button>
