@@ -79,7 +79,7 @@ export default function CalorieIntake() {
                     <h1 className="font-extrabold underline decoration-3 decoration-green-600 text-3xl">Daily Calorie Intake Calculator</h1>
                 </div>
                 <div className="flex flex-col items-center justify-center">
-                    <div className="font-semibold flex flex-col items-center">
+                    <div className="font-semibold flex flex-col text-2xl transition-all duration-200 max-lg:text-xs items-center">
                         <div>
                             My name is
                             <input value={name} type="text"
