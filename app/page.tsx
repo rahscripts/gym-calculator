@@ -18,7 +18,7 @@ export default function Home() {
                 {start && 
                 <div>
           <div className="inset-10 bg-green-700 rounded p-10 sm:m-2 lg:m-20 mb-5 flex flex-col items-center font-bold text-white -space-y-2">
-            <h1 className="text-3xl italic">Choose: </h1>
+            <h1 className="text-3xl italic">Choose:<span className="max-lg:hidden text-xs opacity-50">this section is created just for fun. ThankYou.</span></h1>
             <button onClick={() => {setSkinny(!skinny); setStart(!start)}} className="bg-green-500 p-1 mt-4 m-2 rounded text-black cursor-pointer">Skinny</button>
             <button onClick={() => {setFatty(!fatty); setStart(!start)}} className="bg-green-500 p-1 m-1 rounded text-black cursor-pointer">Fatty</button>
           </div>

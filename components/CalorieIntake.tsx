@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CalorieIntake() {
     const [name, setName] = useState("");
@@ -45,13 +45,51 @@ export default function CalorieIntake() {
         }
         setPress(true);
     }
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const raw = localStorage.getItem("calorieUser");
+        if (!raw) return;
+
+        const savedData = JSON.parse(raw);
+
+        setName(savedData.name || "");
+        setAge(savedData.age || "");
+        setGender(savedData.gender || "");
+        setHeight(savedData.height || "");
+        setWeight(savedData.weight || "");
+        setAfactor(savedData.afactor || "");
+    }, []);
+
+
+    const saveData = () => {
+        const data = {
+            name,
+            age,
+            gender,
+            height,
+            weight,
+            afactor,
+        };
+
+        localStorage.setItem("calorieUser", JSON.stringify(data));
+    };
+
+    useEffect(() => {
+        saveData();
+    }, [name, age, gender, height, weight, afactor]);
+
+
+
+
     const goals = [
         {
             label: "Weight Loss",
             color: "bg-red-200 hover:bg-red-400 px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold",
             calorie: -300,
             emoji: "🥦",
-            t:"text-red-600",
+            t: "text-red-600",
             question: "How does weight loss work?",
             answer:
                 "Weight loss happens when your body uses more energy than the food you eat, so it starts burning stored body fat.",
@@ -63,7 +101,7 @@ export default function CalorieIntake() {
             color: "bg-green-200 hover:bg-green-400 px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold",
             calorie: 400,
             emoji: "🍔",
-            t:"text-green-600",
+            t: "text-green-600",
             question: "How does weight gain work?",
             answer:
                 "Weight gain happens when you eat more energy than your body needs, so the extra food gets stored as body weight.",
@@ -74,8 +112,8 @@ export default function CalorieIntake() {
             label: "Build Muscles",
             color: "bg-orange-200 hover:bg-orange-400 px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold",
             calorie: 0,
-            protien: weight*1.5,
-            t:"text-orange-600",
+            protien: weight * 1.5,
+            t: "text-orange-600",
             emoji: "🦵🏻",
             question: "How does muscle building work?",
             answer:
@@ -87,12 +125,12 @@ export default function CalorieIntake() {
             label: "Body Recomposition",
             color: "bg-gray-300 hover:bg-gray-400 px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold",
             calorie: -300,
-            protien: weight*2,
-            t:"text-purple-700 ",
+            protien: weight * 2,
+            t: "text-purple-700 ",
             emoji: "🏃🏻",
             question: "How does body recomposition work?",
             answer:
-               " Body recomposition uses maintenance calories, high protein, balanced carbs and fats to lose fat while gaining muscle.",
+                " Body recomposition uses maintenance calories, high protein, balanced carbs and fats to lose fat while gaining muscle.",
             example:
                 "A 70 kg person eats near maintenance calories, lifts weights, loses fat slowly, and gains muscle together."
         }
@@ -205,12 +243,12 @@ export default function CalorieIntake() {
                                                         <div className="text-2xl font-bold mt-3">{goal.question}</div>
                                                         <div className="opacity-90 text-xs">{goal.answer}</div>
                                                         <div className={`${goal.t}`}>since, your mantenance calories is <span className="font-bold text-green-600">{Math.round(Mantenance)}</span>, you need to make change of <span className="font-bold">{goal.calorie}</span> calorie in your diet.</div>
-                                                        <div>{goal.protien ? 
-                                                        <div>
-                                                            <p className="text-1xl font-semibold italic">Protien goal: {goal.protien}gm🥣</p>
-                                                            <p></p>
-                                                        </div> : 
-                                                        ""}</div>
+                                                        <div>{goal.protien ?
+                                                            <div>
+                                                                <p className="text-1xl font-semibold italic">Daily protien goal: {goal.protien}gm🥣</p>
+                                                                <p></p>
+                                                            </div> :
+                                                            ""}</div>
                                                     </div>
                                                     <div className="mt-1 font-semibold mb-2">
                                                         Calories to {goal.label}: <span className="text-2xl font-bold">{Math.round(Mantenance + goal.calorie)} {goal.emoji}</span>
