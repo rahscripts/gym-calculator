@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased tracking-tight`}
+        className={`antialiased tracking-tight`}
       >
         <div className="min-h-screen w-full bg-white relative overflow-hidden">
 

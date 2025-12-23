@@ -30,13 +30,23 @@ export default function PredictFuture({
     //how many months you gonna follow the plan?
     const option3 = ["6","12"];
 
-    const allOption = {
-        option1, option2, option3
-    }
+    const allOption = [
+         {
+            q: "whats your ultimate goal?", o1: "Weight Loss", o2: " Weight Gain",
+        },
+        {
+            q: "You gonna follow: ", o1: "300", o2: "500",
+        },
+        {
+            q: "how many months you gonna follow the plan?", o1: "3", o2: "12",
+        },
+    ];
 
 
     
-
+    const mcal = maintenance;
+    const w = allData.weight;
+    
 
     return (
         <section>
@@ -44,8 +54,17 @@ export default function PredictFuture({
                     <h1 className="font-extrabold underline decoration-3 decoration-green-600 text-3xl">Predict Your Future Weight</h1>
             </div>
             <div>
-            
-            
+            {allOption.map((o) => (
+                <div>
+                    <div>
+                        {o.q}
+                    </div>
+                    <div>
+                        <p>{o.o1}</p>
+                        <p>{o.o2}</p>
+                    </div>
+                </div>
+            ))}
 
 
             </div>
