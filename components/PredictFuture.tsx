@@ -1,5 +1,4 @@
 "use client";
-import { Props } from "next/script";
 import { useState } from "react";
 
 type PredictFutureProps = {
@@ -10,13 +9,46 @@ type PredictFutureProps = {
         heavy:number;
         athlete:number;
     };
-    allData: object;
+    allData: {
+         name:string;
+            age:number;
+            gender:number;
+            height:number;
+            weight:number;
+            afactor:number;
+    }
+    ;
 }
 
 export default function PredictFuture({
-    maintenance, afactorobject, allData
+    maintenance, afactorobject, allData,
 }: PredictFutureProps) {
+    //whats your ultimate goal?
+    const option1 = ["Weigth Loss", "Weight Gain"];
+    //how many calories you can {} everyday?
+    const option2 = ["300","500"];
+    //how many months you gonna follow the plan?
+    const option3 = ["6","12"];
+
+    const allOption = {
+        option1, option2, option3
+    }
+
+
+    
+
+
     return (
-        <div>predict</div>
+        <section>
+            <div className="m-10">
+                    <h1 className="font-extrabold underline decoration-3 decoration-green-600 text-3xl">Predict Your Future Weight</h1>
+            </div>
+            <div>
+            
+            
+
+
+            </div>
+        </section>
     )
 }
