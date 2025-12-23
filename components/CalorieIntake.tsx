@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
+import PredictFuture from "./PredictFuture";
 
 export default function CalorieIntake() {
     const [name, setName] = useState("");
@@ -14,14 +15,23 @@ export default function CalorieIntake() {
     const [malebmr, setMalebmr] = useState(0);
     const [femalebmr, setFemalebmr] = useState(0);
 
-    const [Mantenance, setMantenace] = useState(0);
+    const [maintenance, setMantenace] = useState(0);
     const [press, setPress] = useState(false);
+     const allData = {
+            name,
+            age,
+            gender,
+            height,
+            weight,
+            afactor,
+        };
 
-
-    const light = 1.375;
-    const moderate = 1.55;
-    const heavy = 1.75;
-    const athlete = 1.9;
+    const afactorobject = { 
+        light: 1.375,
+        moderate: 1.55,
+        heavy: 1.75,
+        athlete: 1.9,
+    }
 
     const calculateBmr = () => {
         if (gender == "male") {
@@ -29,19 +39,31 @@ export default function CalorieIntake() {
             setMalebmr(newmailbmr);
             let mentanence = newmailbmr;
             if (afactor == "light") {
-                mentanence *= light
+                mentanence *= afactorobject.light;
             } else if (afactor == "moderate") {
-                mentanence *= moderate
+                mentanence *= afactorobject.moderate;
             } else if (afactor == "heavy") {
-                mentanence *= heavy
+                mentanence *= afactorobject.heavy;
             } else if (afactor == "athlete") {
-                mentanence *= athlete
+                mentanence *= afactorobject.athlete;
             }
 
             setMantenace(mentanence);
         } else {
             const newfemalebmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
             setFemalebmr(newfemalebmr);
+            let mentanence = newfemalebmr;
+            if (afactor == "light") {
+                mentanence *= afactorobject.light;
+            } else if (afactor == "moderate") {
+                mentanence *= afactorobject.moderate;
+            } else if (afactor == "heavy") {
+                mentanence *= afactorobject.heavy;
+            } else if (afactor == "athlete") {
+                mentanence *= afactorobject.athlete;
+            }
+
+            setMantenace(mentanence);
         }
         setPress(true);
     }
@@ -201,11 +223,11 @@ export default function CalorieIntake() {
                         {gender == "male" ?
                             <div className="flex flex-col items-center justify-center">
                                 <div>BMR (basal metabolic rate): <span className="text-2xl font-bold">{Math.round(malebmr)} calories </span></div>
-                                <div>Calories to maintain weight: <span className="text-2xl font-bold text-green-700">{Math.round(Mantenance)} calories</span></div>
+                                <div>Calories to maintain weight: <span className="text-2xl font-bold text-green-700">{Math.round(maintenance)} calories</span></div>
                             </div> :
                             <div className="flex flex-col items-center justify-center">
                                 <div>BMR (basal metabolic rate): <span className="text-2xl font-bold">{Math.round(femalebmr)} calories </span></div>
-                                <div>Calories to maintain weight: <span className="text-2xl font-bold text-green-700">{Math.round(Mantenance)} calories</span></div>
+                                <div>Calories to maintain weight: <span className="text-2xl font-bold text-green-700">{Math.round(maintenance)} calories</span></div>
                             </div>
                         }
 
@@ -242,7 +264,7 @@ export default function CalorieIntake() {
                                                     <div>
                                                         <div className="text-2xl font-bold mt-3">{goal.question}</div>
                                                         <div className="opacity-90 text-xs">{goal.answer}</div>
-                                                        <div className={`${goal.t}`}>since, your mantenance calories is <span className="font-bold text-green-600">{Math.round(Mantenance)}</span>, you need to make change of <span className="font-bold">{goal.calorie}</span> calorie in your diet.</div>
+                                                        <div className={`${goal.t}`}>since, your maintenance calories is <span className="font-bold text-green-600">{Math.round(maintenance)}</span>, you need to make change of <span className="font-bold">{goal.calorie}</span> calorie in your diet.</div>
                                                         <div>{goal.protien ?
                                                             <div>
                                                                 <p className="text-1xl font-semibold italic">Daily protien goal: {goal.protien}gm🥣</p>
@@ -251,7 +273,7 @@ export default function CalorieIntake() {
                                                             ""}</div>
                                                     </div>
                                                     <div className="mt-1 font-semibold mb-2">
-                                                        Calories to {goal.label}: <span className="text-2xl font-bold">{Math.round(Mantenance + goal.calorie)} {goal.emoji}</span>
+                                                        Calories to {goal.label}: <span className="text-2xl font-bold">{Math.round(maintenance + goal.calorie)} {goal.emoji}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -264,6 +286,9 @@ export default function CalorieIntake() {
                     </div>
 
                 </div>
+            </div>
+            <div>
+                <PredictFuture maintenance={maintenance} afactorobject={afactorobject} allData={allData} />
             </div>
         </div>
     )
