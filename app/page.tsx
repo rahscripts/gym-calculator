@@ -7,6 +7,7 @@ export default function Home() {
   const [start, setStart] = useState(false);
   const [skinny, setSkinny] = useState(false);
   const [fatty, setFatty] = useState(false);
+  
 
   return (
     <section>
