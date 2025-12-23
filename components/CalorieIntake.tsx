@@ -17,7 +17,7 @@ export default function CalorieIntake() {
 
     const [maintenance, setMantenace] = useState(0);
     const [press, setPress] = useState(false);
-     const allData = {
+    const allData = {
             name,
             age,
             gender,
@@ -288,7 +288,7 @@ export default function CalorieIntake() {
                 </div>
             </div>
             <div>
-                <PredictFuture maintenance={maintenance} afactorobject={afactorobject} allData={allData} />
+                <PredictFuture allData={allData} />
             </div>
         </div>
     )
