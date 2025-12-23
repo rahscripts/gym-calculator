@@ -55,17 +55,17 @@ export default function PredictFuture({
 
 
 
-
+    const sign = goal === "Weight Loss" ? "-" : "+";
     
 
     return (
-        <section className="flex flex-col items-center">
+        <section className="flex mt-20 flex-col items-center">
             <div className="m-10">
-                <h1 className="font-extrabold underline decoration-3 decoration-green-600 text-3xl">Predict Your Future Weight</h1>
+                <h1 className="font-extrabold  transition-all duration-200 underline decoration-3 decoration-green-600 max-md:text-3xl text-5xl">Predict Your Future Weight</h1>
             </div>
             <div >
                 {allOption.map((q) => (
-                    <div key={q.q} className="flex flex-col items-center text-center">
+                    <div key={q.q} className="flex flex-col items-center text-center capitalize">
                         <div>
                             <p className="text-2xl font-bold ">{q.q}</p>
                         </div>
@@ -85,9 +85,9 @@ export default function PredictFuture({
                                                 ${isSelected
                                                 ? "bg-green-600 text-white"
                                                 : "bg-green-200 hover:bg-green-300"
-                                            }`}
+                                            } `}
                                     >
-                                        {opt}
+                                    {["300","500"].includes(opt) ? sign : ""}{opt}{["300","500"].includes(opt) ? " cal" : ""}
                                     </button>
                                 )
                             })}

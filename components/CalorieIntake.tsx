@@ -162,7 +162,7 @@ export default function CalorieIntake() {
         <div className="max-w-3xl mx-auto my-10 p-10">
             <div className="flex flex-col items-center">
                 <div className="mb-10">
-                    <h1 className="font-extrabold underline decoration-3 decoration-green-600 text-3xl">Daily Calorie Intake Calculator</h1>
+                    <h1 className="font-extrabold transition-all duration-300 underline decoration-3 decoration-green-600 max-md:text-3xl text-5xl">Daily Calorie Intake Calculator</h1>
                 </div>
                 <div className="flex flex-col items-center justify-center">
                     <div className="font-semibold flex flex-col text-2xl transition-all duration-200 max-lg:text-sm items-center">
@@ -288,7 +288,7 @@ export default function CalorieIntake() {
                 </div>
             </div>
             <div>
-                <PredictFuture allData={allData} />
+                {press && <PredictFuture allData={allData} />}
             </div>
         </div>
     )
