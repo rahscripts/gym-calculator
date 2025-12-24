@@ -10,7 +10,7 @@ export default function Header() {
                     </span>
                     </h1>
           </div>
-          <div><button className="bg-green-500 p-2 rounded font-bold hover:bg-green-600 cursor-pointer"> still developing! </button></div>
+          <div><button className="bg-green-500 p-2 rounded font-bold hover:bg-green-600 transition-all duration-300 cursor-pointer"> still developing! </button></div>
             </div> 
         </div>
     )

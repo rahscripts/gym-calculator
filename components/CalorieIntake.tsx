@@ -171,7 +171,7 @@ export default function CalorieIntake() {
                             <input value={name} type="text"
                                 onChange={(e) => setName(e.target.value)}
                                 placeholder="name"
-                                className="p-1 text-black border-1 rounded m-2 w-30"
+                                className="p-1 border-green-600 text-black border-1 rounded m-2 w-30"
                             />. <br />
                         </div>
 
@@ -180,9 +180,9 @@ export default function CalorieIntake() {
                             <input value={age} type="number"
                                 onChange={(e) => setAge(Number(e.target.value))}
                                 placeholder="20"
-                                className="p-1 text-black border-1 rounded m-2 w-15"
+                                className="p-1 text-black border-green-600 border-1 rounded m-2 w-15"
                             />-year-old young
-                            <select value={gender} onChange={(e) => setGender(e.target.value)} className="border-1 p-1 m-2 rounded">
+                            <select value={gender} onChange={(e) => setGender(e.target.value)} className="border-1 border-green-600 p-1 m-2 rounded">
                                 <option value="" disabled>?</option>
                                 <option value="male">man</option>
                                 <option value="female"> woman</option></select>. <br />
@@ -192,13 +192,13 @@ export default function CalorieIntake() {
                             <input value={height} type="number"
                                 onChange={(e) => setHeight(Number(e.target.value))}
                                 placeholder="175"
-                                className="p-1 text-black border-1 rounded m-2 w-15"
+                                className="p-1 text-black border-1 border-green-600 rounded m-2 w-20"
                             />cm tall,
                             weigh approximately
                             <input value={weight} type="number"
                                 onChange={(e) => setWeight(Number(e.target.value))}
                                 placeholder="65"
-                                className="p-1 text-black border-1 rounded m-2 w-15"
+                                className="p-1 text-black border-green-600 border-1 rounded m-2 w-15"
                             /> kg,
                             <br />
                         </div>
@@ -207,7 +207,7 @@ export default function CalorieIntake() {
                             <select
                                 value={afactor}
                                 onChange={(e) => setAfactor(e.target.value)}
-                                className="border-1 p-1 rounded m-2">
+                                className="border-1 border-green-600 p-1 rounded m-2">
                                 <option value="" disabled>?</option>
                                 <option value="light">Lightly active</option>
                                 <option value="moderate">Moderately active</option>
