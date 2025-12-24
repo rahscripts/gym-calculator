@@ -16,7 +16,7 @@ export default function Home() {
       <div className="max-lg:mt-10 mt-30 transition-all duration-200">
         <CalorieIntake />
       </div>
-      <div className="max-lg:mt-10 mt-50 mb-40">
+      <div className="max-lg:mt-10 mt-35 mb-40">
         <div className="flex flex-col items-center justify-center">
         <h1 className="text-3xl font-extrabold capitalize ">Section created for fun!😭</h1><br />
           <button className="bg-green-500 p-2 rounded font-bold hover:bg-green-600 cursor-pointer" onClick={() => setStart(!start)}>Start</button>
