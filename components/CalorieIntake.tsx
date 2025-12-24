@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 import PredictFuture from "./PredictFuture";
+import UserCard from "./UserCard";
 
 export default function CalorieIntake() {
     const [name, setName] = useState("");
@@ -288,7 +289,15 @@ export default function CalorieIntake() {
                 </div>
             </div>
             <div>
-                {press && <PredictFuture allData={allData} />}
+                {press && 
+                <div>
+                    <div>
+                        <PredictFuture allData={allData} />
+                    </div>
+                    <div>
+                       <UserCard allData={allData}/>
+                    </div>
+                </div>}
             </div>
         </div>
     )
