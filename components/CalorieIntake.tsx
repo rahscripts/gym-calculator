@@ -237,7 +237,7 @@ export default function CalorieIntake() {
                         {press && (
                             <div className="flex flex-col items-center">
                                 <h1 className="text-3xl tracking-tighter font-semibold m-10 mb-3">
-                                    Tell about your goal {gender === "male" ? "Mr." : "Mrs."} {name} 💪🏻
+                                    {gender === "male" ? "Mr." : "Mrs."} {name}! Know about your Goal! {gender === "male" ? "🧑🏻‍💻" : "👩🏻‍💻"}
                                 </h1>
 
                                 <div className="flex flex-col items-center w-full">
