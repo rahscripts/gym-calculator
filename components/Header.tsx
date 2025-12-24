@@ -1,0 +1,17 @@
+export default function Header() {
+    return (
+        <div className="max-w-3xl mx-auto mb-10 p-10">
+          <div className="flex items-center justify-between">
+          <div>
+              <h1 className="text-3xl font-extrabold ">
+                Gym Calculator
+                <span className="uppercase font-black tracking-tighter text-xs italic underline decoration-wavy text-green-600">
+                    by MR
+                    </span>
+                    </h1>
+          </div>
+          <div><button className="bg-green-500 p-2 rounded font-bold hover:bg-green-600 cursor-pointer"> Start </button></div>
+            </div> 
+        </div>
+    )
+}
