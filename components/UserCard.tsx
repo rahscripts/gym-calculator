@@ -25,7 +25,7 @@ export default function UserCard({ allData }: UserDataProps) {
 
 
     return (
-        <div className="flex  items-center space-y-5 flex-col justify-center max-md:mt-2  mt-10 -mb-5 p-2 ">
+        <div className="flex  items-center space-y-5 flex-col justify-center max-md:mt-2 mt-20 -mb-5 p-2 ">
             <div
                 className={`transition-all hover:scale-[1.02] bg-linear-to-t ${colorMap[color]}
   duration-300 rounded-2xl p-5 backdrop-blur-xl

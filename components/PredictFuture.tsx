@@ -59,45 +59,45 @@ export default function PredictFuture({
     
 
     return (
-        <section className="flex mt-20 flex-col items-center">
-            <div className="m-10">
-                <h1 className="font-extrabold  transition-all duration-200 underline decoration-3 decoration-green-600 max-md:text-3xl text-5xl">Predict Your Future Weight</h1>
-            </div>
-            <div >
-                {allOption.map((q) => (
-                    <div key={q.q} className="flex flex-col items-center text-center capitalize">
-                        <div>
-                            <p className="text-2xl font-bold ">{q.q}{q.q=="I will eat in" ? " (+-) calories" : ""}</p>
+        <section className="mt-20">
+            <div className="flex max-sm:flex-col transition-all duration-300 justify-between items-center border-2 rounded-2xl p-5">
+                <div className="m-10">
+                    <h1 className="font-extrabold  transition-all duration-200 underline decoration-3 decoration-green-600 max-md:text-3xl text-4xl">Predict Your Future Weight</h1>
+                </div>
+                <div className="border m-5 ml-1 p-10 border-black rounded-2xl ">
+                    {allOption.map((q) => (
+                        <div key={q.q} className="flex flex-col items-center text-center capitalize">
+                            <div>
+                                <p className="text-2xl font-bold ">{q.q}{q.q=="I will eat in" ? " (+-) calories" : ""}</p>
+                            </div>
+                            <div>
+                                {q.o.map((opt) => {
+                                    const isSelected = answers[q.id] === opt;
+                                    return (
+                                        <button
+                                            key={opt}
+                                            onClick={() =>
+                                                setAnswers((prev) => ({
+                                                    ...prev,
+                                                    [q.id]: opt,
+                                                }))
+                                            }
+                                            className={`px-4 text-black-900 cursor-pointer py-2 m-2 mb-5 text-1xl max-lg:text-xs font-semibold rounded transition duration-300
+                                                    ${isSelected
+                                                    ? "bg-pink-600 text-white"
+                                                    : "bg-pink-200 hover:bg-pink-300"
+                                                } `}
+                                        >
+                                        {["300","500"].includes(opt) ? sign : ""}{opt}{["300","500"].includes(opt) ? " cal" : ""}
+                                        </button>
+                                    )
+                                })}
+                            </div>
                         </div>
-                        <div>
-                            {q.o.map((opt) => {
-                                const isSelected = answers[q.id] === opt;
-                                return (
-                                    <button
-                                        key={opt}
-                                        onClick={() =>
-                                            setAnswers((prev) => ({
-                                                ...prev,
-                                                [q.id]: opt,
-                                            }))
-                                        }
-                                        className={`px-4 text-black-900 cursor-pointer py-2 m-2 mb-10 text-1xl max-lg:text-xs font-semibold rounded transition
-                                                ${isSelected
-                                                ? "bg-green-600 text-white"
-                                                : "bg-green-200 hover:bg-green-300"
-                                            } `}
-                                    >
-                                    {["300","500"].includes(opt) ? sign : ""}{opt}{["300","500"].includes(opt) ? " cal" : ""}
-                                    </button>
-                                )
-                            })}
-                        </div>
-                    </div>
-
-                ))}
-
+                    ))}
+                </div>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col mt-10 items-center">
                 <p className="text-green-700 font-bold">By the end of {t} months.</p>
                 <p className="font-extrabold uppercase text-2xl"> Your Weight will be <span className="text-red-500 ">{finalWeight? finalWeight.toFixed(2) : "❌"}</span> Kg.</p>
             </div>

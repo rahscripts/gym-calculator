@@ -160,7 +160,7 @@ export default function CalorieIntake() {
     ];
 
     return (
-        <div className="max-w-3xl mx-auto my-10 p-10">
+        <div className="max-w-7xl mx-auto my-10 p-10">
             <div className="flex flex-col items-center">
                 <div className="mb-10">
                     <h1 className="font-extrabold transition-all duration-300 underline decoration-3 decoration-green-600 max-md:text-3xl text-5xl">Daily Calorie Intake Calculator</h1>
