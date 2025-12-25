@@ -222,14 +222,18 @@ export default function CalorieIntake() {
                         <button onClick={calculateBmr} className="p-2 rounded m-10 bg-green-500 hover:bg-green-600 font-bold cursor-pointer mx-auto items-center ">Calulate</button>
                     </div>
                     <div>
-                        {gender == "male" ?
-                            <div className="flex flex-col items-center justify-center">
-                                <div><HoverTooltipText text="BMR(basal metabolic rate):" tooltip="calories that burn if you sleep all day without walking or exercising."/> <span className="text-2xl font-bold">{Math.round(malebmr)} calories </span></div>
-                                <div>Calories to maintain weight: <span className="text-2xl font-bold text-green-700">{Math.round(maintenance)} calories</span></div>
+                        {gender === "male" ?
+                            <div className="flex flex-col -space-x-1 items-start justify-center">
+
+                                <div className="text-gray-700"><HoverTooltipText text="BMR(basal metabolic rate):" tooltip="calories that burn if you sleep all day without walking or exercising."/> <span className=" font-bold">{maintenance < 8000 ? `${Math.round(malebmr)} calories` : "Enter Valid Info"}</span></div>
+
+                                <div className="text-4xl max-md:text-2xl font-semibold tracking-tight uppercase"><HoverTooltipText text="Maintenance Calories:" tooltip="The daily calories your body needs to maintain its current weight. "/> <span className=" font-bold text-green-700">{maintenance < 8000 ? `${Math.round(maintenance)} calories` : "Enter Valid Info"}</span></div>
+
                             </div> :
-                            <div className="flex flex-col items-center justify-center">
-                                <div>BMR (basal metabolic rate): <span className="text-2xl font-bold">{Math.round(femalebmr)} calories </span></div>
-                                <div>Calories to maintain weight: <span className="text-2xl font-bold text-green-700">{Math.round(maintenance)} calories</span></div>
+                            <div className="flex flex-col -space-x-1 items-start justify-center">
+                                 <div className="text-gray-700"><HoverTooltipText text="BMR(basal metabolic rate):" tooltip="calories that burn if you sleep all day without walking or exercising."/> <span className=" font-bold">{maintenance < 8000 ? `${Math.round(femalebmr)} calories` : "Enter Valid Info"}</span></div>
+
+                                <div className="text-4xl max-md:text-2xl font-semibold tracking-tight uppercase"><HoverTooltipText text="Maintenance Calories:" tooltip="The daily calories your body needs to maintain its current weight. "/> <span className=" font-bold text-green-700">{maintenance < 8000 ? `${Math.round(maintenance)} calories` : "Enter Valid Info"}</span></div>
                             </div>
                         }
 
