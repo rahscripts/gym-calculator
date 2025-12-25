@@ -4,10 +4,10 @@ import { useState } from "react";
 type UserDataProps = {
     allData: {
         name: string;
-        age: number;
+        age: string;
         gender: string;
-        height: number;
-        weight: number;
+        height: string;
+        weight: string;
         afactor: string;
     }
     ;

@@ -4,10 +4,10 @@ import { useState } from "react";
 type PredictFutureProps = {
     allData: {
         name: string;
-        age: number;
+        age: string;
         gender: string;
-        height: number;
-        weight: number;
+        height: string;
+        weight: string;
         afactor: string;
     }
     ;
@@ -36,7 +36,7 @@ export default function PredictFuture({
     console.log(totalkg);
 
 
-    const w = allData.weight;
+    const w = Number(allData.weight);
 
     const finalWeight = goal==="Weight Loss" ? w-totalkg : w+totalkg;
     console.log(finalWeight);

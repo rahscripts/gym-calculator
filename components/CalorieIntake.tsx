@@ -6,10 +6,10 @@ import HoverTooltipText from "./HoverToolTipText";
 
 export default function CalorieIntake() {
     const [name, setName] = useState("");
-    const [age, setAge] = useState(0);
+    const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
-    const [height, setHeight] = useState(0);
-    const [weight, setWeight] = useState(0);
+    const [height, setHeight] = useState("");
+    const [weight, setWeight] = useState("");
     const [afactor, setAfactor] = useState("");
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -36,8 +36,12 @@ export default function CalorieIntake() {
     }
 
     const calculateBmr = () => {
+        const ageNum = Number(age);
+        const heightNum = Number(height);
+        const weightNum = Number(weight);
+
         if (gender == "male") {
-            const newmailbmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            const newmailbmr = (10 * weightNum) + (6.25 * heightNum) - (5 * ageNum) + 5;
             setMalebmr(newmailbmr);
             let mentanence = newmailbmr;
             if (afactor == "light") {
@@ -52,7 +56,7 @@ export default function CalorieIntake() {
 
             setMantenace(mentanence);
         } else {
-            const newfemalebmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            const newfemalebmr = (10 * weightNum) + (6.25 * heightNum) - (5 * ageNum) - 161;
             setFemalebmr(newfemalebmr);
             let mentanence = newfemalebmr;
             if (afactor == "light") {
@@ -136,7 +140,7 @@ export default function CalorieIntake() {
             label: "Build Muscles",
             color: "bg-orange-200 hover:bg-orange-400 px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold",
             calorie: 0,
-            protien: weight * 1.5,
+            protien: Number(weight) * 1.5,
             t: "text-orange-600",
             emoji: "🦵🏻",
             question: "How does muscle building work?",
@@ -149,7 +153,7 @@ export default function CalorieIntake() {
             label: "Body Recomposition",
             color: "bg-gray-300 hover:bg-gray-400 px-2 p-1 rounded m-1 cursor-pointer duration-150 font-semibold",
             calorie: -300,
-            protien: weight * 2,
+            protien: Number(weight) * 2,
             t: "text-purple-700 ",
             emoji: "🏃🏻",
             question: "How does body recomposition work?",
@@ -180,7 +184,7 @@ export default function CalorieIntake() {
                         <div>
                             I am a
                             <input value={age} type="number"
-                                onChange={(e) => setAge(Number(e.target.value))}
+                                onChange={(e) => setAge(e.target.value)}
                                 placeholder="20"
                                 className="p-1 text-black border-green-600 border-1 rounded m-2 w-15"
                             />-year-old young
@@ -192,13 +196,13 @@ export default function CalorieIntake() {
                         <div>
                             I stand
                             <input value={height} type="number"
-                                onChange={(e) => setHeight(Number(e.target.value))}
+                                onChange={(e) => setHeight(e.target.value)}
                                 placeholder="175"
                                 className="p-1 text-black border-1 border-green-600 rounded m-2 w-20"
                             />cm tall,
                             weigh approximately
                             <input value={weight} type="number"
-                                onChange={(e) => setWeight(Number(e.target.value))}
+                                onChange={(e) => setWeight(e.target.value)}
                                 placeholder="65"
                                 className="p-1 text-black border-green-600 border-1 rounded m-2 w-15"
                             /> kg,
@@ -221,16 +225,16 @@ export default function CalorieIntake() {
                     <div className="flex">
                         <button onClick={calculateBmr} className="p-2 rounded m-10 bg-green-500 hover:bg-green-600 font-bold cursor-pointer mx-auto items-center ">Calulate</button>
                     </div>
-                    <div>
+                    {press && <div>
                         {gender === "male" ?
-                            <div className="flex flex-col -space-x-1 items-start justify-center">
+                            <div className="flex flex-col -space-x-1 items-center justify-center">
 
                                 <div className="text-gray-700"><HoverTooltipText text="BMR(basal metabolic rate):" tooltip="calories that burn if you sleep all day without walking or exercising."/> <span className=" font-bold">{maintenance < 8000 ? `${Math.round(malebmr)} calories` : "Enter Valid Info"}</span></div>
 
                                 <div className="text-4xl max-md:text-2xl font-semibold tracking-tight uppercase"><HoverTooltipText text="Maintenance Calories:" tooltip="The daily calories your body needs to maintain its current weight. "/> <span className=" font-bold text-green-700">{maintenance < 8000 ? `${Math.round(maintenance)} calories` : "Enter Valid Info"}</span></div>
 
                             </div> :
-                            <div className="flex flex-col -space-x-1 items-start justify-center">
+                            <div className="flex flex-col -space-x-1 items-center justify-center">
                                  <div className="text-gray-700"><HoverTooltipText text="BMR(basal metabolic rate):" tooltip="calories that burn if you sleep all day without walking or exercising."/> <span className=" font-bold">{maintenance < 8000 ? `${Math.round(femalebmr)} calories` : "Enter Valid Info"}</span></div>
 
                                 <div className="text-4xl max-md:text-2xl font-semibold tracking-tight uppercase"><HoverTooltipText text="Maintenance Calories:" tooltip="The daily calories your body needs to maintain its current weight. "/> <span className=" font-bold text-green-700">{maintenance < 8000 ? `${Math.round(maintenance)} calories` : "Enter Valid Info"}</span></div>
@@ -238,7 +242,7 @@ export default function CalorieIntake() {
                         }
 
 
-                    </div>
+                    </div>}
                     <div className="hidden">
                         {press && (
                             <div className="flex flex-col items-center">
