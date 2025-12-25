@@ -1,5 +1,4 @@
 'use client';
-import Image from "next/image";
 import { useState } from "react";
 import CalorieIntake from "@/components/CalorieIntake";
 import Header from "@/components/Header";
@@ -12,7 +11,7 @@ export default function Home() {
       <div className="max-lg:mt-10 mt-30 max-md:mb-0 mb-20 transition-all duration-200">
         <CalorieIntake />
       </div>
-      <div className="mb-20"><FAQlists /></div>
+      <div className="mb-20 max-sm:-mt-10 mt-40"><FAQlists /></div>
     </section>
   );
 }

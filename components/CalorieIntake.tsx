@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import PredictFuture from "./PredictFuture";
 import UserCard from "./UserCard";
+import HoverTooltipText from "./HoverToolTipText";
 
 export default function CalorieIntake() {
     const [name, setName] = useState("");
@@ -223,7 +224,7 @@ export default function CalorieIntake() {
                     <div>
                         {gender == "male" ?
                             <div className="flex flex-col items-center justify-center">
-                                <div>BMR (basal metabolic rate): <span className="text-2xl font-bold">{Math.round(malebmr)} calories </span></div>
+                                <div><HoverTooltipText text="BMR(basal metabolic rate):" tooltip="calories that burn if you sleep all day without walking or exercising."/> <span className="text-2xl font-bold">{Math.round(malebmr)} calories </span></div>
                                 <div>Calories to maintain weight: <span className="text-2xl font-bold text-green-700">{Math.round(maintenance)} calories</span></div>
                             </div> :
                             <div className="flex flex-col items-center justify-center">
