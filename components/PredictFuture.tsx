@@ -46,7 +46,7 @@ export default function PredictFuture({
             id: 1, q: "whats your ultimate goal?", o: ["Weight Loss", " Weight Gain"],
         },
         {
-            id: 2, q: "You gonna follow: ", o: ["300", "500"]
+            id: 2, q: "I will eat in", o: ["300", "500"]
         },
         {
             id: 3, q: "how many months you gonna follow the plan?", o: ["6", "12"],
@@ -67,7 +67,7 @@ export default function PredictFuture({
                 {allOption.map((q) => (
                     <div key={q.q} className="flex flex-col items-center text-center capitalize">
                         <div>
-                            <p className="text-2xl font-bold ">{q.q}</p>
+                            <p className="text-2xl font-bold ">{q.q}{q.q=="I will eat in" ? " (+-) calories" : ""}</p>
                         </div>
                         <div>
                             {q.o.map((opt) => {

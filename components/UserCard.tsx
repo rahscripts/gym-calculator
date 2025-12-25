@@ -16,7 +16,7 @@ type UserDataProps = {
 export default function UserCard({ allData }: UserDataProps) {
     const [color, setColor] = useState("purple");
     const colorMap: Record<string, string> = {
-        purple: "from-purple-500 via-purple-600 to-purple-800 border-purple-700",
+        purple: "from-green-500 via-green-600 to-green-800 border-green-700",
         blue: "from-blue-500 via-blue-600 to-blue-800 border-blue-700",
         green: "from-green-500 via-green-600 to-green-800 border-green-700",
         red: "from-red-500 via-red-600 to-red-800 border-red-700",
@@ -25,7 +25,7 @@ export default function UserCard({ allData }: UserDataProps) {
 
 
     return (
-        <div className="flex  items-center space-y-5 flex-col justify-center mt-30 mt-4 -mb-5 p-2 ">
+        <div className="flex  items-center space-y-5 flex-col justify-center max-md:mt-2  mt-10 -mb-5 p-2 ">
             <div
                 className={`transition-all hover:scale-[1.02] bg-linear-to-t ${colorMap[color]}
   duration-300 rounded-2xl p-5 backdrop-blur-xl

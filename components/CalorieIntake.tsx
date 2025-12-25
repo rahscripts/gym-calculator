@@ -19,15 +19,15 @@ export default function CalorieIntake() {
     const [maintenance, setMantenace] = useState(0);
     const [press, setPress] = useState(false);
     const allData = {
-            name,
-            age,
-            gender,
-            height,
-            weight,
-            afactor,
-        };
+        name,
+        age,
+        gender,
+        height,
+        weight,
+        afactor,
+    };
 
-    const afactorobject = { 
+    const afactorobject = {
         light: 1.375,
         moderate: 1.55,
         heavy: 1.75,
@@ -234,11 +234,11 @@ export default function CalorieIntake() {
 
 
                     </div>
-                    <div>
+                    <div className="hidden">
                         {press && (
                             <div className="flex flex-col items-center">
                                 <h1 className="text-3xl tracking-tighter font-semibold m-10 mb-3">
-                                    {gender === "male" ? "Mr." : "Mrs."} {name}! Know about your Goal! {gender === "male" ? "🧑🏻‍💻" : "👩🏻‍💻"}
+                                    {gender === "male" ? "Mr." : "Mrs."} <span className="capitalize">{name}</span>! Know about your Goal! {gender === "male" ? "🧑🏻‍💻" : "👩🏻‍💻"}
                                 </h1>
 
                                 <div className="flex flex-col items-center w-full">
@@ -289,15 +289,15 @@ export default function CalorieIntake() {
                 </div>
             </div>
             <div>
-                {press && 
-                <div>
+                {press &&
                     <div>
-                        <PredictFuture allData={allData} />
-                    </div>
-                    <div>
-                       <UserCard allData={allData}/>
-                    </div>
-                </div>}
+                        <div>
+                            <PredictFuture allData={allData} />
+                        </div>
+                        <div>
+                            <UserCard allData={allData} />
+                        </div>
+                    </div>}
             </div>
         </div>
     )
