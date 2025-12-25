@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import CalorieIntake from "@/components/CalorieIntake";
 import Header from "@/components/Header";
+import FAQlists from "@/components/FAQlists";
 
 export default function Home() {
   const [start, setStart] = useState(false);
@@ -16,6 +17,7 @@ export default function Home() {
       <div className="max-lg:mt-10 mt-30 transition-all duration-200">
         <CalorieIntake />
       </div>
+      <div><FAQlists /></div>
       <div className="max-lg:mt-10 mt-35 mb-40">
         <div className="flex flex-col items-center justify-center">
         <h1 className="text-3xl font-extrabold capitalize ">Section created for fun!😭</h1><br />
