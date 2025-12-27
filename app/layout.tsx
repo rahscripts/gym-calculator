@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={`antialiased scroll-smooth tracking-tight`}
       >
-        <div className="min-h-screen w-full bg-white relative overflow-hidden">
+        <div className="min-h-screen w-full scroll-smooth bg-white relative overflow-hidden">
 
           {/* Subtle green glow (background only) */}
           <div
@@ -36,7 +36,7 @@ export default function RootLayout({
           />
 
           {/* App content */}
-          <div className="relative z-10">
+          <div className="relative scroll-smooth z-10">
             {children}
           </div>
 

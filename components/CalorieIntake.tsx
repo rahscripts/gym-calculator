@@ -165,84 +165,176 @@ export default function CalorieIntake() {
     ];
 
     return (
-        <div className="max-w-7xl mx-auto my-10 p-10">
+        <div className="max-w-7xl mx-auto my-10 px-4 md:p-10">
             <div className="flex flex-col items-center">
-                <div className="mb-10">
-                    <h1 className="font-extrabold transition-all duration-300 underline decoration-3 decoration-green-600 max-md:text-3xl text-5xl">Daily Calorie Intake Calculator</h1>
+                <div className="mb-12">
+                    <h1 className="font-extrabold transition-all duration-300 underline decoration-3 decoration-green-600 max-md:text-3xl text-5xl text-center">Daily Calorie Intake Calculator</h1>
                 </div>
-                <div className="flex flex-col items-center justify-center">
-                    <div className="font-semibold flex flex-col text-2xl transition-all duration-200 max-lg:text-sm items-center">
-                        <div>
-                            My name is
-                            <input value={name} type="text"
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder="name"
-                                className="p-1 border-green-600 text-black border-1 rounded m-2 w-30"
-                            />. <br />
-                        </div>
-
-                        <div>
-                            I am a
-                            <input value={age} type="number"
-                                onChange={(e) => setAge(e.target.value)}
-                                placeholder="20"
-                                className="p-1 text-black border-green-600 border-1 rounded m-2 w-15"
-                            />-year-old young
-                            <select value={gender} onChange={(e) => setGender(e.target.value)} className="border-1 border-green-600 p-1 m-2 rounded">
-                                <option value="" disabled>?</option>
-                                <option value="male">man</option>
-                                <option value="female"> woman</option></select>. <br />
-                        </div>
-                        <div>
-                            I stand
-                            <input value={height} type="number"
-                                onChange={(e) => setHeight(e.target.value)}
-                                placeholder="175"
-                                className="p-1 text-black border-1 border-green-600 rounded m-2 w-20"
-                            />cm tall,
-                            weigh approximately
-                            <input value={weight} type="number"
-                                onChange={(e) => setWeight(e.target.value)}
-                                placeholder="65"
-                                className="p-1 text-black border-green-600 border-1 rounded m-2 w-15"
-                            /> kg,
-                            <br />
-                        </div>
-                        <div>
-                            and maintain a
-                            <select
-                                value={afactor}
-                                onChange={(e) => setAfactor(e.target.value)}
-                                className="border-1 border-green-600 p-1 rounded m-2">
-                                <option value="" disabled>?</option>
-                                <option value="light">Lightly active</option>
-                                <option value="moderate">Moderately active</option>
-                                <option value="heavy">Active</option>
-                                <option value="athlete">Very Active</option>
-                            </select> lifestyle.
-                        </div>
+                <div className="flex flex-col items-center justify-center w-full max-w-2xl">
+                    {/* Name Input - Optional */}
+                    <div className="w-full mb-8">
+                        <input 
+                            value={name} 
+                            type="text"
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Enter your name (optional)"
+                            className="w-full p-3 text-lg border-2 border-gray-300 rounded-lg text-black focus:border-green-500 focus:outline-none transition-colors duration-300"
+                        />
                     </div>
-                    <div className="flex">
-                        <button onClick={calculateBmr} className="p-2 rounded m-10 bg-green-500 hover:bg-green-600 font-bold cursor-pointer mx-auto items-center ">Calulate</button>
-                    </div>
-                    {press && <div>
-                        {gender === "male" ?
-                            <div className="flex flex-col -space-x-1 items-center justify-center">
 
-                                <div className="text-gray-700"><HoverTooltipText text="BMR(basal metabolic rate):" tooltip="calories that burn if you sleep all day without walking or exercising."/> <span className=" font-bold">{maintenance < 8000 ? `${Math.round(malebmr)} calories` : "Enter Valid Info"}</span></div>
-
-                                <div className="text-4xl max-md:text-2xl font-semibold tracking-tight uppercase"><HoverTooltipText text="Maintenance Calories:" tooltip="The daily calories your body needs to maintain its current weight. "/> <span className=" font-bold text-green-700">{maintenance < 8000 ? `${Math.round(maintenance)} calories` : "Enter Valid Info"}</span></div>
-
-                            </div> :
-                            <div className="flex flex-col -space-x-1 items-center justify-center">
-                                 <div className="text-gray-700"><HoverTooltipText text="BMR(basal metabolic rate):" tooltip="calories that burn if you sleep all day without walking or exercising."/> <span className=" font-bold">{maintenance < 8000 ? `${Math.round(femalebmr)} calories` : "Enter Valid Info"}</span></div>
-
-                                <div className="text-4xl max-md:text-2xl font-semibold tracking-tight uppercase"><HoverTooltipText text="Maintenance Calories:" tooltip="The daily calories your body needs to maintain its current weight. "/> <span className=" font-bold text-green-700">{maintenance < 8000 ? `${Math.round(maintenance)} calories` : "Enter Valid Info"}</span></div>
+                    {/* Counter Inputs */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-8">
+                        {/* Age Counter */}
+                        <div className="flex flex-col items-center">
+                            <label className="text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">Age</label>
+                            <div className="flex items-center justify-center gap-3 w-full">
+                                <button
+                                    onClick={() => {
+                                        const val = age ? Number(age) - 1 : 0;
+                                        if (val >= 0) setAge(val.toString());
+                                    }}
+                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                >
+                                    −
+                                </button>
+                                <input
+                                    type="text"
+                                    value={age}
+                                    onChange={(e) => {
+                                        const val = e.target.value;
+                                        if (val === "" || !isNaN(Number(val))) setAge(val);
+                                    }}
+                                    placeholder="0"
+                                    className="w-24 p-4 text-2xl font-bold text-center border-2 border-gray-300 rounded-lg text-black focus:border-green-500 focus:outline-none transition-colors duration-300"
+                                />
+                                <button
+                                    onClick={() => setAge((Number(age) + 1).toString())}
+                                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                >
+                                    +
+                                </button>
                             </div>
-                        }
+                        </div>
 
+                        {/* Height Counter */}
+                        <div className="flex flex-col items-center">
+                            <label className="text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">Height (cm)</label>
+                            <div className="flex items-center justify-center gap-3 w-full">
+                                <button
+                                    onClick={() => {
+                                        const val = height ? Number(height) - 1 : 0;
+                                        if (val >= 0) setHeight(val.toString());
+                                    }}
+                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                >
+                                    −
+                                </button>
+                                <input
+                                    type="text"
+                                    value={height}
+                                    onChange={(e) => {
+                                        const val = e.target.value;
+                                        if (val === "" || !isNaN(Number(val))) setHeight(val);
+                                    }}
+                                    placeholder="0"
+                                    className="w-24 p-4 text-2xl font-bold text-center border-2 border-gray-300 rounded-lg text-black focus:border-green-500 focus:outline-none transition-colors duration-300"
+                                />
+                                <button
+                                    onClick={() => setHeight((Number(height) + 1).toString())}
+                                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
 
-                    </div>}
+                        {/* Weight Counter */}
+                        <div className="flex flex-col items-center">
+                            <label className="text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">Weight (kg)</label>
+                            <div className="flex items-center justify-center gap-3 w-full">
+                                <button
+                                    onClick={() => {
+                                        const val = weight ? Number(weight) - 1 : 0;
+                                        if (val >= 0) setWeight(val.toString());
+                                    }}
+                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                >
+                                    −
+                                </button>
+                                <input
+                                    type="text"
+                                    value={weight}
+                                    onChange={(e) => {
+                                        const val = e.target.value;
+                                        if (val === "" || !isNaN(Number(val))) setWeight(val);
+                                    }}
+                                    placeholder="0"
+                                    className="w-24 p-4 text-2xl font-bold text-center border-2 border-gray-300 rounded-lg text-black focus:border-green-500 focus:outline-none transition-colors duration-300"
+                                />
+                                <button
+                                    onClick={() => setWeight((Number(weight) + 1).toString())}
+                                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Gender Selector */}
+                    <div className="w-full mb-8">
+                        <label className="text-sm font-bold text-gray-700 mb-3 block uppercase tracking-wide">Gender</label>
+                        <select 
+                            value={gender} 
+                            onChange={(e) => setGender(e.target.value)} 
+                            className="w-full p-3 text-lg border-2 border-gray-300 rounded-lg text-black focus:border-green-500 focus:outline-none transition-colors duration-300"
+                        >
+                            <option value="" disabled>Select your gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+
+                    {/* Activity Level Selector */}
+                    <div className="w-full mb-8">
+                        <label className="text-sm font-bold text-gray-700 mb-3 block uppercase tracking-wide">Activity Level</label>
+                        <select
+                            value={afactor}
+                            onChange={(e) => setAfactor(e.target.value)}
+                            className="w-full p-3 text-lg border-2 border-gray-300 rounded-lg text-black focus:border-green-500 focus:outline-none transition-colors duration-300"
+                        >
+                            <option value="" disabled>Select activity level</option>
+                            <option value="light">Lightly Active</option>
+                            <option value="moderate">Moderately Active</option>
+                            <option value="heavy">Active</option>
+                            <option value="athlete">Very Active</option>
+                        </select>
+                    </div>
+
+                    {/* Calculate Button */}
+                    <button 
+                        onClick={calculateBmr} 
+                        className="w-full md:w-auto px-8 py-4 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold text-lg cursor-pointer transition-all duration-300 transform hover:scale-105 active:scale-95"
+                    >
+                        Calculate
+                    </button>
+                    
+                    {/* Results Section */}
+                    {press && (
+                        <div className="w-full mt-12 p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl border-2 border-green-300 transition-all duration-300">
+                            <div className="space-y-6">
+                                <div>
+                                    <p className="text-gray-700 text-sm mb-2"><HoverTooltipText text="BMR (Basal Metabolic Rate):" tooltip="Calories that burn if you sleep all day without walking or exercising."/> </p>
+                                    <p className="text-3xl md:text-4xl font-bold text-green-700">{maintenance < 8000 ? `${Math.round(gender === "male" ? malebmr : femalebmr)} calories` : "Enter Valid Info"}</p>
+                                </div>
+                                
+                                <div>
+                                    <p className="text-gray-700 text-sm mb-2"><HoverTooltipText text="Maintenance Calories:" tooltip="The daily calories your body needs to maintain its current weight."/></p>
+                                    <p className="text-4xl md:text-5xl font-bold text-green-600">{maintenance < 8000 ? `${Math.round(maintenance)} calories` : "Enter Valid Info"}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <div className="hidden">
                         {press && (
                             <div className="flex flex-col items-center">
@@ -300,7 +392,7 @@ export default function CalorieIntake() {
             <div>
                 {press &&
                     <div>
-                        <div>
+                        <div >
                             <PredictFuture allData={allData} />
                         </div>
                         <div>

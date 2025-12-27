@@ -59,18 +59,24 @@ export default function PredictFuture({
     
 
     return (
-        <section className="mt-20">
-            <div className="flex max-sm:flex-col transition-all duration-300 justify-between items-center border-2 rounded-2xl p-5">
-                <div className="m-10">
-                    <h1 className="font-extrabold  transition-all duration-200 underline decoration-3 decoration-green-600 max-md:text-3xl text-4xl">Predict Your Future Weight</h1>
+        <section className="mt-20 px-4 md:px-0">
+            <div className="max-w-4xl mx-auto">
+                {/* Header */}
+                <div className="mb-12 text-center">
+                    <h1 className="font-extrabold transition-all duration-300 underline decoration-3 decoration-green-600 max-md:text-3xl text-5xl">Predict Your Future Weight</h1>
                 </div>
-                <div className="border m-5 ml-1 p-10 border-black rounded-2xl ">
+
+                {/* Questions Container */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                     {allOption.map((q) => (
-                        <div key={q.q} className="flex flex-col items-center text-center capitalize">
-                            <div>
-                                <p className="text-2xl font-bold ">{q.q}{q.q=="I will eat in" ? " (+-) calories" : ""}</p>
-                            </div>
-                            <div>
+                        <div 
+                            key={q.id} 
+                            className="bg-white border-2 border-gray-300 rounded-2xl p-6 transition-all duration-300 hover:border-pink-500 hover:shadow-lg"
+                        >
+                            <p className="text-lg md:text-xl font-bold text-gray-800 mb-4 text-center">
+                                {q.q}{q.q === "I will eat in" ? " (±) calories" : ""}
+                            </p>
+                            <div className="flex flex-col gap-3">
                                 {q.o.map((opt) => {
                                     const isSelected = answers[q.id] === opt;
                                     return (
@@ -82,25 +88,59 @@ export default function PredictFuture({
                                                     [q.id]: opt,
                                                 }))
                                             }
-                                            className={`px-4 text-black-900 cursor-pointer py-2 m-2 mb-5 text-1xl max-lg:text-xs font-semibold rounded transition duration-300
-                                                    ${isSelected
-                                                    ? "bg-pink-600 text-white"
-                                                    : "bg-pink-200 hover:bg-pink-300"
-                                                } `}
+                                            className={`px-6 py-3 rounded-lg font-bold text-base transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                                                isSelected
+                                                    ? "bg-green-500 text-white shadow-lg"
+                                                    : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                                            }`}
                                         >
-                                        {["300","500"].includes(opt) ? sign : ""}{opt}{["300","500"].includes(opt) ? " cal" : ""}
+                                            {["300", "500"].includes(opt) ? sign : ""}
+                                            {opt}
+                                            {["300", "500"].includes(opt) ? " cal" : " months"}
                                         </button>
-                                    )
+                                    );
                                 })}
                             </div>
                         </div>
                     ))}
                 </div>
-            </div>
-            <div className="flex flex-col mt-10 items-center">
-                <p className="text-green-700 font-bold">By the end of {t} months.</p>
-                <p className="font-extrabold uppercase text-2xl"> Your Weight will be <span className="text-red-500 ">{finalWeight? finalWeight.toFixed(2) : "❌"}</span> Kg.</p>
+
+                {/* Results Section */}
+                {goal && cal && t && (
+                    <div className="bg-gradient-to-r from-green-50 via-green-100 to-green-50 border-3 border-green-500 rounded-3xl p-8 md:p-12 text-center transition-all duration-300 shadow-xl">
+                        <p className="text-gray-700 text-lg md:text-xl mb-4">
+                            After following your plan for <span className="font-bold text-green-700">{t} months</span>...
+                        </p>
+                        
+                        <div className="bg-white rounded-2xl p-8 mb-6 border-2 border-green-300">
+                            <p className="text-gray-600 text-base md:text-lg mb-2">Your Current Weight</p>
+                            <p className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">{w} kg</p>
+
+                            <div className="flex justify-center items-center my-4">
+                                <div className="w-full h-1 bg-green-400"></div>
+                                <span className="mx-4 text-2xl font-bold text-green-500">{sign}</span>
+                                <div className="w-full h-1 bg-green-400"></div>
+                            </div>
+
+                            <p className="text-gray-600 text-base md:text-lg mb-2">Weight Change</p>
+                            <p className="text-2xl md:text-3xl font-bold text-red-500">{totalkg.toFixed(2)} kg</p>
+                        </div>
+
+                        <div className="bg-gradient-to-r from-green-400 to-green-500 rounded-2xl p-8 text-white">
+                            <p className="text-sm md:text-base mb-2 uppercase tracking-wide opacity-90">Your Goal Weight</p>
+                            <p className="text-5xl md:text-6xl font-black mb-2">{finalWeight ? finalWeight.toFixed(2) : "❌"}</p>
+                            <p className="text-lg md:text-xl">kg</p>
+                        </div>
+                    </div>
+                )}
+
+                {/* Empty State */}
+                {(!goal || !cal || !t) && (
+                    <div className="bg-gray-100 border-2 border-gray-300 rounded-2xl p-12 text-center">
+                        <p className="text-gray-600 text-lg">Select all options above to see your predicted weight</p>
+                    </div>
+                )}
             </div>
         </section>
-    )
+    );
 }
