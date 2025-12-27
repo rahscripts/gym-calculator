@@ -29,7 +29,7 @@ export default function CalculateMeals({maintenance}: CalculateMeals) {
             <div className="mx-auto text-2xl font-bold ">
                 <h1>Meal Distribution According To Your Maintenance Calories</h1>
             </div>
-            <div className="flex flex-col gap-20 lg:-mb-5 max-md:mb-20">
+            <div className="flex flex-col gap-20 lg:-mb-5 max-md:mb-40">
                 <div className="flex gap-2 items-center justify-center mt-10 -mb-20 scale-130">
                     {Meals.map((meal) => (
                         <div key={meal.m} className="flex flex-col -space-y-1 items-center border-2 border-black rounded-sm  bg-green-200 p-2">
