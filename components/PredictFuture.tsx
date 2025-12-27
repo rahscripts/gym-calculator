@@ -88,7 +88,7 @@ export default function PredictFuture({
                                                     [q.id]: opt,
                                                 }))
                                             }
-                                            className={`px-6 py-3 rounded-lg font-bold text-base transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                                            className={`px-6 py-3 rounded-lg cursor-pointer font-bold text-base transition-all duration-300 transform hover:scale-105 active:scale-95 ${
                                                 isSelected
                                                     ? "bg-green-500 text-white shadow-lg"
                                                     : "bg-gray-100 text-gray-800 hover:bg-gray-200"
@@ -96,7 +96,7 @@ export default function PredictFuture({
                                         >
                                             {["300", "500"].includes(opt) ? sign : ""}
                                             {opt}
-                                            {["300", "500"].includes(opt) ? " cal" : " months"}
+                                            {["300", "500"].includes(opt) ? " cal" : ""}
                                         </button>
                                     );
                                 })}
@@ -107,7 +107,7 @@ export default function PredictFuture({
 
                 {/* Results Section */}
                 {goal && cal && t && (
-                    <div className="bg-gradient-to-r from-green-50 via-green-100 to-green-50 border-3 border-green-500 rounded-3xl p-8 md:p-12 text-center transition-all duration-300 shadow-xl">
+                    <div className="bg-gradient-to-r scale-80 from-green-50 via-green-100 to-green-50 border-3 border-green-500 rounded-3xl p-8 md:p-12 text-center transition-all duration-300 shadow-xl">
                         <p className="text-gray-700 text-lg md:text-xl mb-4">
                             After following your plan for <span className="font-bold text-green-700">{t} months</span>...
                         </p>

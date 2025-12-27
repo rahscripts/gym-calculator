@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import PredictFuture from "./PredictFuture";
 import UserCard from "./UserCard";
 import HoverTooltipText from "./HoverToolTipText";
+import CalculateMeals from "./CalculateMeals";
 
 export default function CalorieIntake() {
     const [name, setName] = useState("");
@@ -165,11 +166,8 @@ export default function CalorieIntake() {
     ];
 
     return (
-        <div className="max-w-7xl mx-auto my-10 px-4 md:p-10">
+        <div className="max-w-7xl mx-auto my-10 mt-0 px-4 md:p-10">
             <div className="flex flex-col items-center">
-                <div className="mb-12">
-                    <h1 className="font-extrabold transition-all duration-300 underline decoration-3 decoration-green-600 max-md:text-3xl text-5xl text-center">Daily Calorie Intake Calculator</h1>
-                </div>
                 <div className="flex flex-col items-center justify-center w-full max-w-2xl">
                     {/* Name Input - Optional */}
                     <div className="w-full mb-8">
@@ -193,7 +191,7 @@ export default function CalorieIntake() {
                                         const val = age ? Number(age) - 1 : 0;
                                         if (val >= 0) setAge(val.toString());
                                     }}
-                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                    className="bg-red-500 cursor-pointer hover:bg-red-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
                                 >
                                     −
                                 </button>
@@ -209,7 +207,7 @@ export default function CalorieIntake() {
                                 />
                                 <button
                                     onClick={() => setAge((Number(age) + 1).toString())}
-                                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                    className="bg-green-500 cursor-pointer hover:bg-green-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
                                 >
                                     +
                                 </button>
@@ -225,7 +223,7 @@ export default function CalorieIntake() {
                                         const val = height ? Number(height) - 1 : 0;
                                         if (val >= 0) setHeight(val.toString());
                                     }}
-                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                    className="bg-red-500 cursor-pointer hover:bg-red-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
                                 >
                                     −
                                 </button>
@@ -237,11 +235,11 @@ export default function CalorieIntake() {
                                         if (val === "" || !isNaN(Number(val))) setHeight(val);
                                     }}
                                     placeholder="0"
-                                    className="w-24 p-4 text-2xl font-bold text-center border-2 border-gray-300 rounded-lg text-black focus:border-green-500 focus:outline-none transition-colors duration-300"
+                                    className="w-24 p-4 text-2xl font-bold text-center border-2 border-gray-300 rounded-lg text-black focus:border-green-500 focus:outline-none  transition-colors duration-300"
                                 />
                                 <button
                                     onClick={() => setHeight((Number(height) + 1).toString())}
-                                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                    className="bg-green-500 cursor-pointer hover:bg-green-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
                                 >
                                     +
                                 </button>
@@ -257,7 +255,7 @@ export default function CalorieIntake() {
                                         const val = weight ? Number(weight) - 1 : 0;
                                         if (val >= 0) setWeight(val.toString());
                                     }}
-                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                    className="bg-red-500 cursor-pointer hover:bg-red-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
                                 >
                                     −
                                 </button>
@@ -269,11 +267,11 @@ export default function CalorieIntake() {
                                         if (val === "" || !isNaN(Number(val))) setWeight(val);
                                     }}
                                     placeholder="0"
-                                    className="w-24 p-4 text-2xl font-bold text-center border-2 border-gray-300 rounded-lg text-black focus:border-green-500 focus:outline-none transition-colors duration-300"
+                                    className="w-24 p-4 cursor-pointer text-2xl font-bold text-center border-2 border-gray-300 rounded-lg text-black focus:border-green-500 focus:outline-none transition-colors duration-300"
                                 />
                                 <button
                                     onClick={() => setWeight((Number(weight) + 1).toString())}
-                                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
+                                    className="bg-green-500 cursor-pointer hover:bg-green-600 text-white font-bold py-2 px-3 rounded-lg transition-all duration-300"
                                 >
                                     +
                                 </button>
@@ -397,6 +395,9 @@ export default function CalorieIntake() {
                         </div>
                         <div>
                             <UserCard allData={allData} />
+                        </div>
+                        <div>
+                            <CalculateMeals maintenance={maintenance}/>
                         </div>
                     </div>}
             </div>
