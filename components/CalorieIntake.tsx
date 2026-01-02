@@ -312,7 +312,7 @@ export default function CalorieIntake() {
                     {/* Calculate Button */}
                     <button 
                         onClick={calculateBmr} 
-                        className="w-full md:w-auto px-8 py-4 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold text-lg cursor-pointer transition-all duration-300 transform hover:scale-105 active:scale-95"
+                        className="btn"
                     >
                         Calculate
                     </button>

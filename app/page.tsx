@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import FAQlists from "@/components/FAQlists";
 import Footer from "@/components/Footer";
 import CalculateMeals from "@/components/CalculateMeals";
+import PrTracker from "@/components/Pr/PrTracker";
 
 export default function Home() {
   return (
